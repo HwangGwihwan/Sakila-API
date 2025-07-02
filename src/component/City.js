@@ -18,16 +18,16 @@ export default function City() {
     return (
         <div>
             <h1>City (currentPage: {pageNumber})</h1>
-            <table border="1">
+            <table className="border-collapse border border-gray-400">
                 <tr>
-                    <th>city_id</th>
-                    <th>city</th>
+                    <th className="border border-gray-300">city_id</th>
+                    <th className="border border-gray-300">city</th>
                 </tr>
                 {
                     cityList.map((c) => (
                         <tr key={c.cityId}>
-                            <td>{c.cityId}</td>
-                            <td>{c.city}</td>
+                            <td className="border border-gray-300 text-center">{c.cityId}</td>
+                            <td className="border border-gray-300 text-center">{c.city}</td>
                         </tr>
                     ))
 

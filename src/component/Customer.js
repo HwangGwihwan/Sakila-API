@@ -19,18 +19,18 @@ export default function Customer() {
     return (
         <div>
             <h1>Customer (currentPage: {pageNumber})</h1>
-            <table border="1">
+            <table className="border-collapse border border-gray-400">
                 <tr>
-                    <th>customer_id</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
+                    <th className="border border-gray-300">customer_id</th>
+                    <th className="border border-gray-300">firstName</th>
+                    <th className="border border-gray-300">lastName</th>
                 </tr>
                 {
                     customerList.map((c) => (
                         <tr key={c.customerId}>
-                            <td>{c.customerId}</td>
-                            <td>{c.firstName}</td>
-                            <td>{c.lastName}</td>
+                            <td className="border border-gray-300 text-center">{c.customerId}</td>
+                            <td className="border border-gray-300 text-center">{c.firstName}</td>
+                            <td className="border border-gray-300 text-center">{c.lastName}</td>
                         </tr>
                     ))
 

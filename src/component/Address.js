@@ -18,16 +18,16 @@ export default function Address() {
     return (
         <div>
             <h1>Address (currentPage: {pageNumber})</h1>
-            <table border="1">
+            <table className="border-collapse border border-gray-400">
                 <tr>
-                    <th>address_id</th>
-                    <th>address</th>
+                    <th className="border border-gray-300">address_id</th>
+                    <th className="border border-gray-300">address</th>
                 </tr>
                 {
                     addressList.map((a) => (
                         <tr key={a.addressId}>
-                            <td>{a.addressId}</td>
-                            <td>{a.address}</td>
+                            <td className="border border-gray-300 text-center">{a.addressId}</td>
+                            <td className="border border-gray-300 text-center">{a.address}</td>
                         </tr>
                     ))
 

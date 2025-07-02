@@ -20,16 +20,16 @@ export default function Country() {
     return (
         <div>
             <h1>Country (currentPage: {pageNumber})</h1>
-            <table border="1">
+            <table className="border-collapse border border-gray-400">
                 <tr>
-                    <th>country_id</th>
-                    <th>country</th>
+                    <th className="border border-gray-300">country_id</th>
+                    <th className="border border-gray-300">country</th>
                 </tr>
                 {
                     countryList.map((c) => (
                         <tr key={c.countryId}>
-                            <td>{c.countryId}</td>
-                            <td><Link to="/CountryOne/{c.countryId}"></Link>{c.country}</td>
+                            <td className="border border-gray-300 text-center">{c.countryId}</td>
+                            <td className="border border-gray-300 text-center"><Link to="/CountryOne/{c.countryId}"></Link>{c.country}</td>
                         </tr>
                     ))
 
