@@ -4,6 +4,14 @@ import Country from './component/Country';
 import Address from './component/Address';
 import City from './component/City';
 import Customer from './component/Customer';
+import CountryOne from './component/CountryOne';
+import AddCountry from './component/AddCountry';
+import CityOne from './component/CityOne';
+import AddCity from './component/AddCity';
+import AddressOne from './component/AddressOne';
+import AddAddress from './component/AddAddress';
+import CustomerOne from './component/CustomerOne';
+import AddCustomer from './component/AddCustomer';
 
 export default function App() {
 
@@ -25,12 +33,27 @@ export default function App() {
 
                 <Routes>
                     <Route path='/' element={<Home />} /> {/* 라우터 > 컴포넌드 */}
-                    <Route path='/Country' element={<Country />} />
-                    {/* <Route path='/CountryOne/:countryId' element={<CountryOne />} /> */}
-                    <Route path='/City' element={<City />} />
-                    <Route path='/Address' element={<Address />} />
-                    <Route path='/Customer' element={<Customer />} />
 
+                    {/* country curd */}
+                    <Route path='/Country' element={<Country />} />
+                    <Route path='/CountryOne/:countryId' element={<CountryOne />} />
+                    <Route path='/AddCountry' element={<AddCountry />} />
+
+                    {/* city curd */}
+                    <Route path='/City' element={<City />} />
+                    <Route path='/CityOne/:cityId' element={<CityOne />} />
+                    <Route path='/AddCity/:countryId' element={<AddCity />} />
+                    
+                    {/* address curd */}
+                    <Route path='/Address' element={<Address />} />
+                    <Route path='/AddressOne/:addressId' element={<AddressOne />} />
+                    <Route path='/AddAddress/:cityId' element={<AddAddress />} />
+
+                    {/* customer curd */}
+                    <Route path='/Customer' element={<Customer />} />
+                    <Route path='/CustomerOne/:customerId' element={<CustomerOne />} />
+                    <Route path='/AddCustomer/:addressId' element={<AddCustomer />} />
+                    
                 </Routes>
 
                 {/* ----------------------------------------- */}

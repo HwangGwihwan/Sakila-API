@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export default function Customer() {
 
@@ -29,8 +30,8 @@ export default function Customer() {
                     customerList.map((c) => (
                         <tr key={c.customerId}>
                             <td className="border border-gray-300 text-center">{c.customerId}</td>
-                            <td className="border border-gray-300 text-center">{c.firstName}</td>
-                            <td className="border border-gray-300 text-center">{c.lastName}</td>
+                            <td className="border border-gray-300 text-center"><Link to={`/CustomerOne/${c.customerId}`}>{c.firstName}</Link></td>
+                            <td className="border border-gray-300 text-center"><Link to={`/CustomerOne/${c.customerId}`}>{c.lastName}</Link></td>
                         </tr>
                     ))
 

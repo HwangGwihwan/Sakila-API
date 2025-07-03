@@ -20,6 +20,10 @@ export default function Country() {
     return (
         <div>
             <h1>Country (currentPage: {pageNumber})</h1>
+
+            {/* country 입력 */}
+            <Link to="/AddCountry">add country</Link>
+            
             <table className="border-collapse border border-gray-400">
                 <tr>
                     <th className="border border-gray-300">country_id</th>
@@ -29,7 +33,7 @@ export default function Country() {
                     countryList.map((c) => (
                         <tr key={c.countryId}>
                             <td className="border border-gray-300 text-center">{c.countryId}</td>
-                            <td className="border border-gray-300 text-center"><Link to="/CountryOne/{c.countryId}"></Link>{c.country}</td>
+                            <td className="border border-gray-300 text-center"><Link to={`/CountryOne/${c.countryId}`}>{c.country}</Link></td>
                         </tr>
                     ))
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export default function Address() {
 
@@ -27,7 +28,7 @@ export default function Address() {
                     addressList.map((a) => (
                         <tr key={a.addressId}>
                             <td className="border border-gray-300 text-center">{a.addressId}</td>
-                            <td className="border border-gray-300 text-center">{a.address}</td>
+                            <td className="border border-gray-300 text-center"><Link to={`/AddressOne/${a.addressId}`}>{a.address}</Link></td>
                         </tr>
                     ))
 
