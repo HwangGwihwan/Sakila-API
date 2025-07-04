@@ -1,47 +1,80 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Country() {
-
-    //const countryList = [];
     const [countryList, setContryList] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-    useEffect(function() {
+    useEffect(() => {
         fetch("http://localhost/countryList/" + pageNumber)
-        .then(function(res) {return res.json();})
-        .then(data => {
-            setContryList(data.content);
-            setTotalPages(data.totalPages);
-        });
-    }, [pageNumber]); // 두 번째 인자가 []이면 처음 화면이 랜더링때 한번만 useEffect() 생성
+            .then(res => res.json())
+            .then(data => {
+                setContryList(data.content);
+                setTotalPages(data.totalPages);
+            });
+    }, [pageNumber]);
 
     return (
-        <div>
-            <h1>Country (currentPage: {pageNumber})</h1>
+        <div className="max-w-4xl mx-auto p-6">
+            <h1 className="text-3xl font-bold text-indigo-700 mb-6">Country List</h1>
 
-            {/* country 입력 */}
-            <Link to="/AddCountry">add country</Link>
-            
-            <table className="border-collapse border border-gray-400">
-                <tr>
-                    <th className="border border-gray-300">country_id</th>
-                    <th className="border border-gray-300">country</th>
-                </tr>
-                {
-                    countryList.map((c) => (
-                        <tr key={c.countryId}>
-                            <td className="border border-gray-300 text-center">{c.countryId}</td>
-                            <td className="border border-gray-300 text-center"><Link to={`/CountryOne/${c.countryId}`}>{c.country}</Link></td>
+            {/* 나라 추가 버튼 */}
+            <div className="mb-4">
+                <Link 
+                    to="/AddCountry" 
+                    className="inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow"
+                >
+                    나라 추가
+                </Link>
+            </div>
+
+            {/* 테이블 */}
+            <table className="w-full table-fixed border-collapse shadow-sm mb-4">
+                <thead className="bg-gray-100">
+                    <tr>
+                        <th className="w-1/4 text-left px-4 py-2 border-b border-gray-300">Country ID</th>
+                        <th className="w-3/4 text-left px-4 py-2 border-b border-gray-300">Country Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {countryList.map((c) => (
+                        <tr key={c.countryId} className="hover:bg-gray-50 transition-colors">
+                            <td className="px-4 py-3 border-b border-gray-200 text-sm text-gray-800">
+                                {c.countryId}
+                            </td>
+                            <td className="px-4 py-3 border-b border-gray-200 text-sm text-indigo-700 font-medium truncate">
+                                <Link 
+                                    to={`/CountryOne/${c.countryId}`} 
+                                    className="hover:underline block w-full"
+                                    title={c.country}
+                                >
+                                    {c.country}
+                                </Link>
+                            </td>
                         </tr>
-                    ))
-
-                }
+                    ))}
+                </tbody>
             </table>
-            <button onClick={() => {pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}}>이전</button>
-            {pageNumber}/{totalPages}
-            <button onClick={() => {pageNumber < totalPages ? setPageNumber(pageNumber + 1) : setPageNumber(totalPages)}}>다음</button>
+
+            {/* 페이지네이션 */}
+            <div className="flex items-center justify-center space-x-4 mt-4">
+                <button
+                    onClick={() => setPageNumber(prev => (prev > 1 ? prev - 1 : 1))}
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium px-4 py-2 rounded"
+                >
+                    이전
+                </button>
+
+                <span className="font-semibold">{pageNumber} / {totalPages}</span>
+
+                <button
+                    onClick={() => setPageNumber(prev => (prev < totalPages ? prev + 1 : totalPages))}
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium px-4 py-2 rounded"
+                >
+                    다음
+                </button>
+            </div>
         </div>
-    )
+    );
 }
